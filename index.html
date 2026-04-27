@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voter Navigator | Interactive Election Guide</title>
+    <meta name="description" content="A 3-step guide and countdown for first-time voters.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Temporary debug style */
+        body { background-color: #f0fdf4 !important; border: 5px solid #16a34a !important; }
+    </style>
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <!-- Debug: If you see this, HTML is loading -->
+    <noscript>Please enable JavaScript to view this site.</noscript>
+    
+    <div class="background-decor"></div>
+
+    <header>
+        <div class="container">
+            <h1 class="logo">Voter Navigator</h1>
+            <nav>
+                <a href="#guide">How to Vote</a>
+                <a href="#countdown">Election Day</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="hero" class="hero-section">
+            <div class="hero-content">
+                <h2>Your Voice Matters.</h2>
+                <p>Prepare for the upcoming election with our simple 3-step guide for first-time voters.</p>
+                <a href="#guide" class="btn-primary">Get Started</a>
+            </div>
+
+            <div id="countdown" class="countdown-card glass-panel">
+                <h3>Countdown to Election Day</h3>
+                <p class="subtitle">November 3rd</p>
+                <div class="timer">
+                    <div class="time-box">
+                        <span id="days" class="number">00</span>
+                        <span class="label">Days</span>
+                    </div>
+                    <div class="time-box">
+                        <span id="hours" class="number">00</span>
+                        <span class="label">Hours</span>
+                    </div>
+                    <div class="time-box">
+                        <span id="minutes" class="number">00</span>
+                        <span class="label">Minutes</span>
+                    </div>
+                    <div class="time-box">
+                        <span id="seconds" class="number">00</span>
+                        <span class="label">Seconds</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="guide" class="guide-section">
+            <h2 class="section-title">3-Step Process</h2>
+            <div class="steps-container">
+
+                <div class="step-card" onclick="toggleStep(this)">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <h3>Register</h3>
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="step-content">
+                        <p>Before you can vote, you need to ensure you are registered. Deadlines vary by state, so check
+                            early!</p>
+                        <ul>
+                            <li>Verify your voter registration status online.</li>
+                            <li>Have your state ID or driver's license ready.</li>
+                            <li>Update your address if you've moved recently.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step-card active" onclick="toggleStep(this)">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <h3>Research</h3>
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="step-content">
+                        <p>Be an informed voter by researching the candidates and issues on your ballot.</p>
+                        <ul>
+                            <li>Look up a sample ballot for your district.</li>
+                            <li>Read about candidates' platforms and voting records.</li>
+                            <li>Check for non-partisan voter guides.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step-card" onclick="toggleStep(this)">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <h3>Vote</h3>
+                        <span class="toggle-icon">+</span>
+                    </div>
+                    <div class="step-content">
+                        <p>Decide exactly how and when you will cast your ballot.</p>
+                        <ul>
+                            <li><strong>In-Person:</strong> Find your polling place and check the hours.</li>
+                            <li><strong>Mail-In:</strong> Request your absentee ballot before the deadline.</li>
+                            <li><strong>Early Voting:</strong> See if your state allows voting before Election Day.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section id="timeline" class="timeline-section">
+            <h2 class="section-title">Election Timeline</h2>
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">October 4</div>
+                    <div class="timeline-content">
+                        <h4>Registration Deadline</h4>
+                        <p>Last day to register for the general election in many states.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">October 20</div>
+                    <div class="timeline-content">
+                        <h4>Absentee Ballot Deadline</h4>
+                        <p>Recommended date to request your mail-in or absentee ballot.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">October 26</div>
+                    <div class="timeline-content">
+                        <h4>Early Voting Begins</h4>
+                        <p>Check your local polling places for early voting opportunities.</p>
+                    </div>
+                </div>
+                <div class="timeline-item highlight">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">November 3</div>
+                    <div class="timeline-content">
+                        <h4>Election Day</h4>
+                        <p>Polls are open! Make sure to cast your vote by the closing time.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="current-year"></span> Voter Navigator. Make your voice heard.</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
