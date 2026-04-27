@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="institutional">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voter Navigator | Official Election Guide</title>
+    <meta name="description" content="Official Voter Navigation Portal - Government of India Initiative.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="background-decor"></div>
+
+    <header>
+        <div class="container">
+            <div class="logo-container">
+                <div class="emblem-placeholder">GOVT OF<br>INDIA</div>
+                <div class="branding-text">
+                    <h1 id="main-title">Voter Navigator</h1>
+                    <p>Government of India Initiative</p>
+                </div>
+            </div>
+            <div class="logo-container">
+                <nav>
+                    <a href="#guide" class="nav-link">Guidelines</a>
+                </nav>
+                <div style="display: flex; gap: 10px;">
+                    <button id="lang-toggle" class="btn-secondary" style="padding: 5px 10px; border-radius: 5px; font-weight: 700; cursor: pointer; background: var(--off-white); color: var(--text-main); border: 1px solid var(--glass-border);">HI | EN</button>
+                    <button id="theme-toggle">Theme: Institutional</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="hero" class="hero-section fade-in">
+            <div class="hero-content">
+                <h2 id="hero-title">Empowering Every Indian Voter</h2>
+                <p>Digital portal for voter registration assistance and election information.</p>
+                <div style="display: flex; gap: 15px; justify-content: center;">
+                    <a href="#guide" class="btn-primary">Get Registered</a>
+                    <button id="generate-badge" class="btn-primary" style="background: var(--accent-gold); color: #002868 !important;">Share My Badge</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="countdown-section" class="fade-in" style="padding-top: 5px;">
+            <div id="countdown" class="quiz-card" style="margin: 0 auto; max-width: 1000px; text-align: center; border: 3px solid var(--accent-gold); background: var(--bg-gradient); color: white !important;">
+                <h3 style="font-size: 2rem; margin-bottom: 15px; color: white !important;">Election Day Countdown</h3>
+                <p class="countdown-date" style="margin-bottom: 30px; font-weight: 700; font-size: 1.5rem; letter-spacing: 2px;">NOVEMBER 3, 2026</p>
+                <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                    <div class="large-time-box">
+                        <span id="days" class="timer-num">00</span>
+                        <small class="timer-label">Days</small>
+                    </div>
+                    <div class="large-time-box">
+                        <span id="hours" class="timer-num">00</span>
+                        <small class="timer-label">Hours</small>
+                    </div>
+                    <div class="large-time-box">
+                        <span id="minutes" class="timer-num">00</span>
+                        <small class="timer-label">Minutes</small>
+                    </div>
+                    <div class="large-time-box">
+                        <span id="seconds" class="timer-num">00</span>
+                        <small class="timer-label">Seconds</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="poll-section" class="quiz-section fade-in">
+            <div class="quiz-card">
+                <h3>Live Engagement: Public Sentiment</h3>
+                <p style="margin-bottom: 20px;">What is your #1 reason for voting?</p>
+                <div id="poll-options" style="display: flex; flex-direction: column; gap: 10px;">
+                    <button class="option-btn" onclick="submitPoll('Development')">National Development</button>
+                    <button class="option-btn" onclick="submitPoll('Better Infrastructure')">Better Infrastructure</button>
+                    <button class="option-btn" onclick="submitPoll('Social Welfare')">Social Welfare</button>
+                </div>
+                <div id="poll-results" style="display: none; margin-top: 20px;">
+                    <div class="poll-bar-container">
+                        <div class="poll-label">Development</div>
+                        <div class="poll-bar-bg"><div id="bar-1" class="poll-bar-fill" style="width: 0%"></div></div>
+                        <span id="val-1">0%</span>
+                    </div>
+                    <div class="poll-bar-container">
+                        <div class="poll-label">Infrastructure</div>
+                        <div class="poll-bar-bg"><div id="bar-2" class="poll-bar-fill" style="width: 0%"></div></div>
+                        <span id="val-2">0%</span>
+                    </div>
+                    <div class="poll-bar-container">
+                        <div class="poll-label">Welfare</div>
+                        <div class="poll-bar-bg"><div id="bar-3" class="poll-bar-fill" style="width: 0%"></div></div>
+                        <span id="val-3">0%</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="quiz-section" class="quiz-section fade-in">
+            <div class="quiz-card">
+                <h3>Voter Readiness Audit</h3>
+                <div class="progress-container">
+                    <div id="quiz-progress" class="progress-bar" style="width: 0%"></div>
+                </div>
+                <div id="quiz-content">
+                    <p id="quiz-question" class="question-text">Initializing Audit...</p>
+                    <div id="quiz-options"></div>
+                    <p id="quiz-feedback" style="margin-top: 15px; font-weight: 700; display: none;"></p>
+                    <button id="next-btn" class="btn-primary" style="display: none; width: 100%; margin-top: 20px;">Continue to Next Stage</button>
+                </div>
+                <div id="quiz-results" style="display: none; text-align: center;">
+                    <h4 style="font-size: 1.5rem; margin-bottom: 10px;">Audit Complete</h4>
+                    <p id="results-text" style="margin-bottom: 20px;"></p>
+                    <button onclick="resetQuiz()" class="btn-primary">Restart Audit</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="guide" class="guide-section fade-in">
+            <h2 class="section-title">Institutional Guidelines</h2>
+            <div style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px;">
+                <div class="quiz-card" style="margin: 0; padding: 25px; cursor: pointer;" onclick="this.classList.toggle('active')">
+                    <h4>1. Verification of Eligibility</h4>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">Ensure you are an Indian citizen and will be 18 years of age by the qualifying date.</p>
+                </div>
+                <div class="quiz-card" style="margin: 0; padding: 25px; cursor: pointer;" onclick="this.classList.toggle('active')">
+                    <h4>2. Digital Registration</h4>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">Register online via the National Voter's Service Portal (NVSP) or the Voter Helpline App.</p>
+                </div>
+                <div class="quiz-card" style="margin: 0; padding: 25px; cursor: pointer;" onclick="this.classList.toggle('active')">
+                    <h4>3. Exercise of Franchise</h4>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">Locate your designated polling station and carry valid identification for the polling day.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="timeline" class="timeline-section fade-in">
+            <h2 class="section-title">Institutional Timeline</h2>
+            <div style="max-width: 800px; margin: 0 auto;">
+                <div style="border-left: 3px solid var(--accent-gold); padding-left: 25px; margin-bottom: 30px; position: relative;">
+                    <span class="timeline-date">October 04, 2026</span>
+                    <h4 style="margin: 5px 0;">Final Enrollment Date</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-muted) !important;">Last date for registration in the Electoral Roll for the upcoming General Election.</p>
+                </div>
+                <div style="border-left: 3px solid var(--accent-gold); padding-left: 25px; margin-bottom: 30px; position: relative;">
+                    <span class="timeline-date">October 26, 2026</span>
+                    <h4 style="margin: 5px 0;">Postal Ballot Issuance</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-muted) !important;">Commencement of postal ballot issuance for eligible personnel.</p>
+                </div>
+                <div style="border-left: 3px solid #16a34a; padding-left: 25px; position: relative;">
+                    <span style="color: #16a34a; font-weight: 800;">November 03, 2026</span>
+                    <h4 style="margin: 5px 0; color: #16a34a !important;">POLLING DAY</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-muted) !important;">Voters are encouraged to visit their assigned booths between 07:00 and 18:00.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Civic AI Assistant -->
+    <div id="ai-bubble" class="ai-bubble">
+        <span>💬</span>
+    </div>
+    <div id="ai-chat" class="ai-chat-window">
+        <div class="chat-header">
+            <strong>Civic AI Assistant</strong>
+            <button id="close-chat">×</button>
+        </div>
+        <div id="chat-messages" class="chat-messages">
+            <div class="message bot">Hello! I'm your Civic Assistant. Ask me anything about voter eligibility.</div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="user-input" placeholder="Type your query...">
+            <button id="send-btn">Send</button>
+        </div>
+    </div>
+
+    <!-- Hidden Badge for Download -->
+    <div id="badge-template" style="position: absolute; left: -9999px; width: 500px; height: 300px; background: linear-gradient(135deg, #002868 0%, #003a94 100%); color: white; padding: 40px; border: 5px solid #ff9933; border-radius: 15px; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <div style="font-size: 1.2rem; font-weight: 800; border: 2px solid #ff9933; border-radius: 50%; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">GOI</div>
+        <h2 style="font-size: 2rem; margin-bottom: 10px;">VOTER CHAMPION</h2>
+        <p style="font-size: 1.2rem; font-weight: 600;">I'm ready to vote 2026!</p>
+        <p style="font-size: 0.8rem; margin-top: 20px; opacity: 0.8;">Verified via Voter Navigator Portal</p>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Voter Navigator Portal - Digital India Initiative</p>
+            <p style="font-size: 0.8rem; margin-top: 10px; opacity: 0.8;">Strictly for awareness purposes. Developed for PromptWars 2026.</p>
+        </div>
+    </footer>
+</body>
+</html>
